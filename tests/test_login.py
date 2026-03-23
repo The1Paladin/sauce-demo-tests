@@ -29,3 +29,10 @@ def test_sql_injection(page):
     login.navigate()
     login.login("' OR '1'='1", "' OR '1'='1")
     assert "inventory" not in page.url
+
+def test_product_header_present(page):
+    login = LoginPage(page)
+    login.navigate()
+    login.login("standard_user", "secret_sauce")
+    assert "Product" in login.get_product_class()
+
